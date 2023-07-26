@@ -3,6 +3,7 @@
 require 'assets/dp/conn.php';
 
 $alarm = '';
+$mailExist = '';
 $errors = [];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -29,6 +30,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (count($errors) == 0) :
 
+        $stmt = $conn->prepare('SELECT email FROM users WHERE email= ? ') ;
+        $stmt->bind_param('s', $_POST["YourEmail"]) ;
+        $stmt->execute() ;
+        $results = $stmt->get_result();
+
+
+        if ($results->num_rows > 0 ) {
+
+            $mailExist = 'Email Already Exists! go to login page' ;
+
+        } else {
+
         $name = $_POST['YourName'];
         $email = $_POST['YourEmail'];
         $password = $_POST['Password'];
@@ -37,6 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param('sss', $name, $email, $password);
         $stmt->execute();
         $alarm = 'USER ADDED SUCCESSFULLY';
+
+        }
 
     endif;
 
@@ -72,6 +87,13 @@ include 'header.php';
 
 ?>
 
+
+<?php if ($mailExist != '') : ?>
+    <div class="alert alert-danger" role="alert">
+        EMAIL ALREADY EXISTS, MOVE TO LOGIN PAGE <a href="login.php">HERE</a>
+    </div>
+
+<?php endif; ?>
 
 <?php if ($alarm != '') : ?>
     <div class="alert alert-success" role="alert">

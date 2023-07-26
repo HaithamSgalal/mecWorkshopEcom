@@ -1,6 +1,5 @@
 <?php
-session_start();
-
+session_start() ;
 require "assets/dp/conn.php";
 
 if (isset($_SESSION['user_id'])) {
