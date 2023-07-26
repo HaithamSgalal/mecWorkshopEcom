@@ -1,6 +1,6 @@
 <?php
 
-require 'dp/conn.php';
+require 'assets/dp/conn.php';
 
 $alarm = '';
 $errors = [];
@@ -15,7 +15,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST['YourEmail']) || !filter_var($_POST["YourEmail"], FILTER_VALIDATE_EMAIL)) {
         $errors ['emailError'] = 'E-Mail Is Not Valid';
     }
-
 
 
     //check if password is empty
@@ -52,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Cards</title>
-    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/styles/bootstrap.min.css">
     <link rel="stylesheet" href="assets/styles/bootstrap.min.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
@@ -61,24 +60,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link
             href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Libre+Baskerville:ital@1&family=Playfair+Display:ital,wght@1,500&display=swap"
             rel="stylesheet">
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="assets/styles/style.css">
 
 </head>
 
 <body>
 
-<div class="h-75">
-    <div class="w3-bar w3-white w3-card  h-100" id="myNavbar" style="font-family: 'Libre Baskerville', serif;">
-        <a href="#home" class="w3-bar-item w3-button w3-wide">BUY ZONE</a>
-        <!-- Right-sided navbar links -->
-        <div class="w3-right w3-hide-small">
-            <a href="../index.php" class="w3-bar-item w3-button">HOME PAGE</a>
-            <a href="../assets/cart.php" class="w3-bar-item w3-button">CART</a>
-            <a href="../assets/login.php" class="w3-bar-item w3-button">LOGIN</a>
-            <a href="../assets/register.php" class="w3-bar-item w3-button">SIGN UP</a>
-        </div>
-    </div>
-</div>
+<?php
+
+include 'header.php';
+
+?>
 
 
 <?php if ($alarm != '') : ?>
@@ -162,7 +154,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
                             <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 
-                                <img src="imges/istockphoto-1315891458-612x612_auto_x2.jpg" class="img-fluid"
+                                <img src="assets/imges/istockphoto-1315891458-612x612_auto_x2.jpg" class="img-fluid"
                                      alt="Sample image">
 
                             </div>
